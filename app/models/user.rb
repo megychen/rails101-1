@@ -6,5 +6,9 @@ class User < ApplicationRecord
   has_many :groups
   has_many :posts
   has_many :group_relationships
-  has_many :participated_groups, :though => :group_relationships, :source => :group
+  has_many :participated_grous, :through => :group_relationships, :source => :group
+
+  def is_member_of?(group)
+      participated_grous.include?(group)
+  end
 end
